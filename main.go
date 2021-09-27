@@ -1,7 +1,6 @@
 package main
 
 import (
-	"Centralized_transaction/auto"
 	"Centralized_transaction/config"
 	"Centralized_transaction/router"
 	"fmt"
@@ -11,7 +10,7 @@ import (
 
 func main() {
 	config.Load()
-	auto.Load()
+
 	fmt.Printf("\n\tListening [::]:%d\n", config.PORT)
 	listen(config.PORT)
 }

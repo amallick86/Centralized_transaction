@@ -9,7 +9,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func SignIn(email, password string) (string, error) {
+func SignIn(email, password string) (models.User, error) {
 	user := models.User{}
 	var err error
 	var db *gorm.DB
@@ -35,7 +35,8 @@ func SignIn(email, password string) (string, error) {
 		ch <- true
 	}(done)
 	if channels.OK(done) {
-		return CreateToken(user.ID)
+		user.Token,err = CreateToken(user.ID)
+		return user,err
 	}
-	return "", err
+	return user, err
 }

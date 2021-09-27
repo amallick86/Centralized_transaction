@@ -8,7 +8,9 @@ import (
 	"io/ioutil"
 	"net/http"
 )
-
+type TokenRequest struct{
+	Token string `json:"token"`
+}
 func Login(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -27,10 +29,12 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	token, err := auth.SignIn(user.Email, user.Password)
+
+	user, err = auth.SignIn(user.Email, user.Password)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	responses.JSON(w, http.StatusOK, token)
+	user.Password = ""
+	responses.JSON(w, http.StatusOK, user)
 }

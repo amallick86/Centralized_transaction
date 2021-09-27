@@ -16,7 +16,8 @@ type User struct {
 	Nickname    string        `gorm:"size:20;not null;unique" json:"nickname"`
 	Email       string        `gorm:"size:50;not null;unique" json:"email"`
 	Citizenship string        `gorm:"size:20;not null" json:"citizenship"`
-	Password    string        `gorm:"size:60;not null" json:"password"`
+	Password    string        `gorm:"size:60;not null" json:"password,omitempty"`
+	Token  string    `gorm:"size:255" json:"token"`
 	CreatedAt   time.Time     `gorm:"default:current_timestamp()" json:"created_at"`
 	UpdatedAt   time.Time     `gorm:"default:current_timestamp()" json:"updated_at"`
 	Transaction []Transaction `gorm:"foreignKey:Citizenship; " json:"transaction"`
