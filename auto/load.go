@@ -13,14 +13,13 @@ func Load() {
 	}
 	defer db.Close()
 
-	err = db.Debug().DropTableIfExists(&models.Transaction{}, &models.User{}).Error
-	if err != nil {
-		log.Fatal(err)
-	}
+	// err = db.Debug().DropTableIfExists(&models.Transaction{}, &models.User{}).Error
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 	err = db.Debug().AutoMigrate(&models.User{}, &models.Transaction{}).Error
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 }

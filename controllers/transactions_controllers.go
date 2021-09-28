@@ -44,12 +44,14 @@ func GetTransactions(w http.ResponseWriter, r *http.Request) {
 func CreateTransaction(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
+
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
 	post := models.Transaction{}
 	err = json.Unmarshal(body, &post)
 	if err != nil {
+
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}

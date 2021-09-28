@@ -11,7 +11,7 @@ type Transaction struct {
 	From        string    `gorm:"size:30;not null" json:"from"`
 	Type        string    `gorm:"size:30;not null" json:"type"`
 	Author      User      `json:"author"`
-	Amount      uint64    `gorm:"not null" json:"amount"`
+	Amount      int64     `gorm:"not null" json:"amount"`
 	CreatedAt   time.Time `gorm:"default:current_timestamp()" json:"created_at"`
 	UpdatedAt   time.Time `gorm:"default:current_timestamp()" json:"updated_at"`
 }
